@@ -343,7 +343,7 @@ public class interfaz extends javax.swing.JFrame {
                 
                 String ID = numero_cancion.getText();
 
-                String query = "SELECT * FROM cancion WHERE Id like "+ ID;
+                String query = "SELECT * FROM cancion WHERE id_cancion like "+ ID;
                 Statement sta = gc.conect.createStatement();
     
                 ResultSet rs = sta.executeQuery(query);
@@ -371,13 +371,10 @@ public class interfaz extends javax.swing.JFrame {
 
                 rs.close();
                 sta.close();
-                System.out.println("Consultado correctamente");
-                
-
-
+  
             } catch (Exception e) {
                 e.printStackTrace();
-               // error = e.toString();
+             
             
             }
     }//GEN-LAST:event_Consulta_idcancionActionPerformed
