@@ -227,6 +227,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Consulta id de Album"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Consulta_idalbumActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Consulta_albumes">
       <Properties>

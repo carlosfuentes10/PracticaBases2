@@ -124,6 +124,11 @@ public class interfaz extends javax.swing.JFrame {
         titulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         Consulta_idalbum.setText("Consulta id de Album");
+        Consulta_idalbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Consulta_idalbumActionPerformed(evt);
+            }
+        });
 
         Consulta_albumes.setText("Consulta Albumes ");
         Consulta_albumes.addActionListener(new java.awt.event.ActionListener() {
@@ -477,6 +482,49 @@ public class interfaz extends javax.swing.JFrame {
                                                                                                 
                
     }//GEN-LAST:event_Consulta_cancionesActionPerformed
+
+    private void Consulta_idalbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Consulta_idalbumActionPerformed
+        // TODO add your handling code here:
+        try {
+                gc.conect.setAutoCommit(false);
+                
+                String ID = numero_album.getText();
+
+                String query = "SELECT * FROM album WHERE id_album like "+ ID;
+                Statement sta = gc.conect.createStatement();
+    
+                ResultSet rs = sta.executeQuery(query);
+                
+                ResultSetMetaData metaDatos = rs.getMetaData();
+
+                int numColumnas = metaDatos.getColumnCount();
+
+                mostrar = new DefaultTableModel();
+
+                this.jTable1.setModel(mostrar);
+
+                for (int i = 1; i <= numColumnas; i++) {
+                    mostrar.addColumn(metaDatos.getColumnLabel(i));
+                }
+
+                while (rs.next()) {
+                    Object [] fila = new Object[numColumnas];
+
+                    for (int i = 0; i < numColumnas; i++) {
+                        fila [i] = rs.getObject(i +1);
+                    }
+                    mostrar.addRow(fila);
+                }
+
+                rs.close();
+                sta.close();
+  
+            } catch (Exception e) {
+                e.printStackTrace();
+             
+            
+            }
+    }//GEN-LAST:event_Consulta_idalbumActionPerformed
 
     /**
      * @param args the command line arguments
